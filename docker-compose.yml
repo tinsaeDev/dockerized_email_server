@@ -1,0 +1,27 @@
+version: '3'
+services:
+
+  postgress:
+
+  nginx:
+
+  php-fpm:
+    build:
+        context: ./
+        dockerfile: ./docker/alpine/Dockerfile
+    image: "email_alpine"
+    restart: always
+  
+
+  postfix:
+    build:
+        context: ./
+        dockerfile: ./docker/postfix/Dockerfile
+    image: "email_alpine"
+    restart: always
+  
+
+  dovecot:
+  postfix-admin:
+
+  roundcube:
