@@ -1,27 +1,39 @@
 version: '3'
 services:
 
-  postgress:
+  # postgress:
 
-  nginx:
+  # nginx:
 
-  php-fpm:
-    build:
-        context: ./
-        dockerfile: ./docker/alpine/Dockerfile
-    image: "email_alpine"
-    restart: always
+  # php-fpm:
+  #   build:
+  #       context: ./
+  #       dockerfile: ./docker/alpine/Dockerfile
+  #   image: "email_alpine"
+  #   restart: always
   
 
-  postfix:
+  email:
     build:
         context: ./
-        dockerfile: ./docker/postfix/Dockerfile
-    image: "email_alpine"
+        dockerfile: ./docker/email/Dockerfile
+    image: "email"
     restart: always
-  
+    # ports:
+    #   - ${HOST_IP}:25:25
+    #   - ${HOST_IP}:587:587
+    #   - ${HOST_IP}:465:465
+    #   - ${HOST_IP}:143:143
+    #   - ${HOST_IP}:993:143
+  # dovecot:
+  #     build:
+  #       context: ./
+  #       dockerfile: ./docker/dovecot/Dockerfile
+  #     image: "email_dovecot"
+  #     restart: always
+  #     ports:
+  #       - ${HOST_IP}:993:993
+  #       - ${HOST_IP}:143:143
+  # postfix-admin:
 
-  dovecot:
-  postfix-admin:
-
-  roundcube:
+  # roundcube:
