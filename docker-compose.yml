@@ -1,39 +1,86 @@
 version: '3'
 services:
+  db:
+    build: ./docker/postgress/
+    ports:
+      - ${HOST_IP}:${POSTGRESS_HOST_PORT}:5432
+    volumes:
+      - email_psql:/var/lib/postgresql/data
+    environment:
+      ssl: 0
+      POSTGRES_USER: ${POSTGRESS_USER}
+      POSTGRES_PASSWORD: ${POSTGRESS_PASSWORD}
+      POSTGRES_DB: ${POSTGRESS_DB}
+    restart: always
 
-  # postgress:
-
-  # nginx:
-
-  # php-fpm:
-  #   build:
-  #       context: ./
-  #       dockerfile: ./docker/alpine/Dockerfile
-  #   image: "email_alpine"
-  #   restart: always
-  
-
-  email:
+  smtp:
     build:
         context: ./
-        dockerfile: ./docker/email/Dockerfile
-    image: "email"
+        dockerfile: ./docker/postfix/Dockerfile
+    image: "smtp"
     restart: always
-    # ports:
-    #   - ${HOST_IP}:25:25
-    #   - ${HOST_IP}:587:587
-    #   - ${HOST_IP}:465:465
-    #   - ${HOST_IP}:143:143
-    #   - ${HOST_IP}:993:143
-  # dovecot:
-  #     build:
-  #       context: ./
-  #       dockerfile: ./docker/dovecot/Dockerfile
-  #     image: "email_dovecot"
-  #     restart: always
-  #     ports:
-  #       - ${HOST_IP}:993:993
-  #       - ${HOST_IP}:143:143
-  # postfix-admin:
+    ports:
+      - ${HOST_IP}:25:25
+      - ${HOST_IP}:587:587
+      - ${HOST_IP}:465:465
 
-  # roundcube:
+    volumes:
+      - postfix_socket:/var/spool/postfix/private/dovecot-lmtp:rw
+
+
+  dovecot:
+    depends_on:
+      - smtp
+    build:
+      context: ./
+      dockerfile: ./docker/dovecot/Dockerfile
+    ports:
+      - ${HOST_IP}:143:143
+      - ${HOST_IP}:993:993    
+    restart: always
+    volumes:
+      - postfix_socket:/var/spool/postfix/private/dovecot-lmtp:rw
+      
+
+  ps-admin:
+    depends_on:
+      - db
+      - smtp
+    build:
+        context: ./
+        dockerfile: ./docker/postfix-admin/Dockerfile
+    image: "postfix-admin"
+    restart: always
+    environment:
+
+      POSTFIXADMIN_DB_TYPE: pgsql
+      POSTFIXADMIN_DB_HOST: db
+
+      POSTFIXADMIN_DB_USER: ${POSTGRESS_USER}
+      POSTFIXADMIN_DB_PASSWORD: ${POSTGRESS_PASSWORD}
+      POSTFIXADMIN_DB_NAME: ${POSTGRESS_DB}
+
+      # 
+      POSTFIXADMIN_ENCRYPT: dovecot:ARGON2I
+      POSTFIXADMIN_DOVECOTPW: /usr/bin/dovecot/ pw -r 5 # Shared volume
+      
+      # SMTP
+      POSTFIXADMIN_SMTP_SERVER: postfix
+      POSTFIXADMIN_SMTP_PORT: ${SMTP_SERVER_PORT}
+
+      # SETUP Password
+      POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PWD}
+
+
+
+    ports:
+      - ${HOST_IP}:${POSTFIXADMIN_PORT}:80
+      - ${HOST_IP}:${POSTFIXADMIN_PORT_TLS}:443
+    volumes:
+      - postfix-admin_templates:/var/www/html/templates_c
+
+
+volumes:
+  email_psql:
+  postfix_socket:
+  postfix-admin_templates:

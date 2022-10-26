@@ -1,0 +1,5 @@
+user = tinsae
+password = tinsae
+hosts = localhost
+dbname = postfixadmin
+query = SELECT maildir FROM mailbox WHERE username='%s' AND active = true
