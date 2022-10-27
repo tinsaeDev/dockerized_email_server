@@ -13,11 +13,11 @@ services:
       POSTGRES_DB: ${POSTGRESS_DB}
     restart: always
 
-  smtp:
+  smtp.fivestar.et:
     build:
         context: ./
         dockerfile: ./docker/postfix/Dockerfile
-    image: "smtp"
+    image: smtp
     restart: always
     ports:
       - ${HOST_IP}:25:25
@@ -25,12 +25,13 @@ services:
       - ${HOST_IP}:465:465
 
     volumes:
-      - postfix_socket:/var/spool/postfix/private/dovecot-lmtp:rw
+      - postfix_socket:/var/spool/postfix/:rw
 
 
-  dovecot:
+  imap.fivestar.et:
+    image: dovecot
     depends_on:
-      - smtp
+      - smtp.fivestar.et
     build:
       context: ./
       dockerfile: ./docker/dovecot/Dockerfile
@@ -39,13 +40,14 @@ services:
       - ${HOST_IP}:993:993    
     restart: always
     volumes:
-      - postfix_socket:/var/spool/postfix/private/dovecot-lmtp:rw
+      - postfix_socket:/var/spool/postfix/:rw
+      - etc-dovecot:/etc/dovecot/:rw
       
 
   ps-admin:
     depends_on:
       - db
-      - smtp
+      - smtp.fivestar.et
     build:
         context: ./
         dockerfile: ./docker/postfix-admin/Dockerfile
@@ -65,8 +67,8 @@ services:
       POSTFIXADMIN_DOVECOTPW: /usr/bin/dovecot/ pw -r 5 # Shared volume
       
       # SMTP
-      POSTFIXADMIN_SMTP_SERVER: postfix
-      POSTFIXADMIN_SMTP_PORT: ${SMTP_SERVER_PORT}
+      POSTFIXADMIN_SMTP_SERVER: smtp.fivestar.et
+      POSTFIXADMIN_SMTP_PORT: 25
 
       # SETUP Password
       POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PWD}
@@ -78,9 +80,12 @@ services:
       - ${HOST_IP}:${POSTFIXADMIN_PORT_TLS}:443
     volumes:
       - postfix-admin_templates:/var/www/html/templates_c
+      - etc-dovecot:/etc/dovecot/:ro
+
 
 
 volumes:
   email_psql:
   postfix_socket:
   postfix-admin_templates:
+  etc-dovecot:

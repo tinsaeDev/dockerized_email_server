@@ -1,0 +1,11 @@
+driver = pgsql
+
+connect = host=db dbname=mail1234567890 user=mail1234567890 password=mail1234567890
+
+default_pass_scheme = ARGON2I
+
+password_query = SELECT username AS user,password FROM mailbox WHERE username = '%u' AND active = true
+
+user_query = SELECT maildir, 2000 AS uid, 2000 AS gid FROM mailbox WHERE username = '%u' AND active = true
+
+iterate_query = SELECT username AS user FROM mailbox
