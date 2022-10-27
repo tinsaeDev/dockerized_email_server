@@ -1,4 +1,4 @@
-FROM alpine:3.16.2
+FROM alpine:3.12
 
 # Upgade the repo
 # RUN apt update && apt -y full-upgrade && apt -y install apt-utils apt-transport-https gnupg2 curl
@@ -9,7 +9,7 @@ FROM alpine:3.16.2
 RUN apk update  && apk upgrade
 # Install Postfix
 # RUN  apt install -y  postfix 
-RUN apk add postfix postfix-pgsql hash btree
+RUN apk add postfix postfix-pgsql
 
 # Copy Postfix Configuration Files
 COPY ./docker/postfix-admin/postfix/configs/aliases /etc/aliases
@@ -29,5 +29,9 @@ RUN apk add busybox-extras
 RUN adduser postfix mail
 RUN chown -R :postfix /etc/postfix/
 RUN chmod 644 /etc/postfix/main.cf 
+
+
+# Copy Cert files
+COPY docker/certs/* /email/certs/
 
 CMD [ "/usr/sbin/postfix","start-fg" ]

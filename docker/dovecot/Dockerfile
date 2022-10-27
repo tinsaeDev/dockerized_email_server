@@ -24,8 +24,9 @@ COPY ./docker/dovecot/configs/conf.d/* /etc/dovecot/conf.d/
 RUN  useradd postfix
 
 # Copy Cert files
-
 COPY docker/certs/* /email/certs/
+
+# Create Log dir
 RUN mkdir -p /var/log/dovecot
 
 RUN adduser dovecot mail
