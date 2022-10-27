@@ -1,5 +1,5 @@
-user = tinsae
-password = tinsae
-hosts = localhost
-dbname = postfixadmin
+user = mail1234567890
+password = mail1234567890
+hosts = db
+dbname = mail1234567890
 query = SELECT goto FROM alias WHERE address='%s' AND active = true

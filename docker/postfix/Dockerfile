@@ -9,13 +9,12 @@ FROM alpine:3.16.2
 RUN apk update  && apk upgrade
 # Install Postfix
 # RUN  apt install -y  postfix 
-RUN apk add postfix
+RUN apk add postfix postfix-pgsql hash btree
 
 # Copy Postfix Configuration Files
 COPY ./docker/postfix-admin/postfix/configs/aliases /etc/aliases
 COPY ./docker/postfix-admin/postfix/configs/* /etc/postfix/
 COPY ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
-
 
 
 # Install Open DKIM
@@ -24,9 +23,11 @@ COPY docker/postfix/opendkim/opendkim.conf /etc/opendkim.conf
 COPY docker/postfix/opendkim/mail.private /etc/postfix/dkim.key
 
 # Install mailutils
-RUN apk add busybox-extras
+RUN apk add busybox-extras 
 
-
+# Permition related
 RUN adduser postfix mail
+RUN chown -R :postfix /etc/postfix/
+RUN chmod 644 /etc/postfix/main.cf 
 
 CMD [ "/usr/sbin/postfix","start-fg" ]
