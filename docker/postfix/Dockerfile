@@ -13,6 +13,7 @@ RUN apk add postfix postfix-pgsql
 
 # Copy Postfix Configuration Files
 COPY ./docker/postfix-admin/postfix/configs/aliases /etc/aliases
+RUN postalias /etc/aliases
 COPY ./docker/postfix-admin/postfix/configs/* /etc/postfix/
 COPY ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
 
@@ -29,6 +30,9 @@ RUN apk add busybox-extras
 RUN adduser postfix mail
 RUN chown -R :postfix /etc/postfix/
 RUN chmod 644 /etc/postfix/main.cf 
+
+
+RUN chown -R :postfix /var/spool/postfix/
 
 
 # Copy Cert files
