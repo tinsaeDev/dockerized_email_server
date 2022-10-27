@@ -27,4 +27,6 @@ COPY docker/postfix/opendkim/mail.private /etc/postfix/dkim.key
 RUN apk add busybox-extras
 
 
+RUN adduser postfix mail
+
 CMD [ "/usr/sbin/postfix","start-fg" ]

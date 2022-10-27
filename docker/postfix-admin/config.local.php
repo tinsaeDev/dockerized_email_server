@@ -8,7 +8,6 @@ $CONF['database_password'] = 'mail1234567890';
 $CONF['database_name'] = 'mail1234567890';
 $CONF['dovecotpw'] = "/usr/bin/doveadm pw -r 5";
 $CONF['encrypt'] = 'dovecot:ARGON2I';
-$CONF['encrypt'] = 'md5';
 $CONF['setup_password'] = '$2y$10$th72KE8xFcl4xccXI8gJzeBeUpIY9h3O06MgVsKkDB3Lf5GsB.Kxi';
 
 
