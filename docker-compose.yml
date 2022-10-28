@@ -25,10 +25,16 @@ services:
       - ${HOST_IP}:587:587
 
     volumes:
-      - postfix_socket:/var/spool/postfix/:rw
+      - postfix_socket:/var/spool/postfix/private/
       - vmail:/var/vmail/
 
-
+  opendkim:
+    build:
+        context: ./
+        dockerfile: ./docker/opendkim/Dockerfile
+    image: opendkim
+    restart: always
+    
   imap.fivestar.et:
     image: dovecot
     depends_on:
@@ -41,11 +47,10 @@ services:
       - ${HOST_IP}:993:993    
     restart: always
     volumes:
-      - postfix_socket:/var/spool/postfix/:rw
+      - postfix_socket:/var/spool/postfix/private/
       - etc-dovecot:/etc/dovecot/:rw
       - vmail:/var/vmail/
       
-
   ps-admin:
     depends_on:
       - db
