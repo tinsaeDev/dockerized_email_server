@@ -5,7 +5,7 @@ services:
     ports:
       - ${HOST_IP}:${POSTGRESS_HOST_PORT}:5432
     volumes:
-      - email_psql:/var/lib/postgresql/data
+      - email_pgsql:/var/lib/postgresql/data
     environment:
       ssl: 0
       POSTGRES_USER: ${POSTGRESS_USER}
@@ -98,6 +98,22 @@ services:
       - etc-dovecot:/etc/dovecot/:rw
       - vmail:/var/vmail/
 
+
+  # Roundcube
+
+  roundcube-db:
+    image: postgres
+    # ports:
+    #   - ${HOST_IP}:${POSTGRESS_HOST_PORT}:5432
+    volumes:
+      - roundcube_pgsql:/var/lib/postgresql/data
+    environment:
+      ssl: 0
+      POSTGRES_USER: ${ROUNDCUBE_DB_POSTGRESS_USER}
+      POSTGRES_PASSWORD: ${ROUNDCUBE_DB_POSTGRESS_PASSWORD}
+      POSTGRES_DB: ${ROUNDCUBE_DB_POSTGRESS_DB}
+    restart: always  
+
   roundcube-fpm:
     depends_on:
       - smtp.fivestar.et
@@ -127,7 +143,7 @@ services:
       - ${HOST_IP}:${ROUNDCUBE_PORT_TLS}:443
 
 volumes:
-  email_psql:
+  email_pgsql:
   postfix_socket:
   postfix-admin_templates:
   etc-dovecot:
@@ -136,7 +152,6 @@ volumes:
   
   # Shared roundcube code 
   roundcube_code:
-
-  # 
   roundcube_logs:
   roundcube_temp:
+  roundcube_pgsql:
