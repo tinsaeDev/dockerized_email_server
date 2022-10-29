@@ -13,7 +13,22 @@ services:
       POSTGRES_DB: ${POSTGRESS_DB}
     restart: always
 
+  opendkim:
+    build:
+        context: ./
+        dockerfile: ./docker/opendkim/Dockerfile
+    image: opendkim
+    restart: always
+    volumes:
+      - postfix_socket:/var/spool/postfix/private/
+      - vmail:/var/vmail/
+
+
+
   smtp.fivestar.et:
+    depends_on:
+      - db
+      - opendkim
     build:
         context: ./
         dockerfile: ./docker/postfix/Dockerfile
@@ -28,32 +43,9 @@ services:
       - postfix_socket:/var/spool/postfix/private/
       - vmail:/var/vmail/
 
-  opendkim:
-    build:
-        context: ./
-        dockerfile: ./docker/opendkim/Dockerfile
-    image: opendkim
-    restart: always
-    
-  imap.fivestar.et:
-    image: dovecot
-    depends_on:
-      - smtp.fivestar.et
-    build:
-      context: ./
-      dockerfile: ./docker/dovecot/Dockerfile
-    ports:
-      - ${HOST_IP}:143:143
-      - ${HOST_IP}:993:993    
-    restart: always
-    volumes:
-      - postfix_socket:/var/spool/postfix/private/
-      - etc-dovecot:/etc/dovecot/:rw
-      - vmail:/var/vmail/
-      
+
   ps-admin:
     depends_on:
-      - db
       - smtp.fivestar.et
     build:
         context: ./
@@ -90,6 +82,49 @@ services:
       - etc-dovecot:/etc/dovecot/:ro
 
 
+  imap.fivestar.et:
+    image: dovecot
+    depends_on:
+      - smtp.fivestar.et
+    build:
+      context: ./
+      dockerfile: ./docker/dovecot/Dockerfile
+    ports:
+      - ${HOST_IP}:143:143
+      - ${HOST_IP}:993:993    
+    restart: always
+    volumes:
+      - postfix_socket:/var/spool/postfix/private/
+      - etc-dovecot:/etc/dovecot/:rw
+      - vmail:/var/vmail/
+
+  roundcube-fpm:
+    depends_on:
+      - smtp.fivestar.et
+      - imap.fivestar.et
+    build:
+        context: ./
+        dockerfile: ./docker/roundcube-fpm/Dockerfile
+    image: "roundcube-fpm"
+    restart: always
+    volumes:
+        - roundcube_code:/var/www/html/
+        - roundcube_logs:/var/www/html/logs/
+        - roundcube_temp:/var/www/html/temp/
+
+  roundcube-nginx:
+    depends_on:
+      - roundcube-fpm
+    build:
+        context: ./
+        dockerfile: ./docker/roundcube-nginx/Dockerfile
+    image: "roundcube-nginx"
+    restart: always
+    volumes:
+        - roundcube_code:/var/www/html/
+    ports:
+      - ${HOST_IP}:${ROUNDCUBE_PORT}:80
+      - ${HOST_IP}:${ROUNDCUBE_PORT_TLS}:443
 
 volumes:
   email_psql:
@@ -98,3 +133,10 @@ volumes:
   etc-dovecot:
   # Share virtual mail among postfix and dovecot
   vmail:
+  
+  # Shared roundcube code 
+  roundcube_code:
+
+  # 
+  roundcube_logs:
+  roundcube_temp:
