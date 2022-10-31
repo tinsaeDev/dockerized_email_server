@@ -47,7 +47,7 @@ RUN usermod -u 2000 vmail
 RUN chown -R vmail /var/vmail/
 
 # Copy Cert files
-COPY docker/certs/* /email/certs/
+COPY ./certs/* /email/certs/
 
 # RUN cp -p /etc/resolv.conf /var/spool/postfix/etc/resolv.conf 
 

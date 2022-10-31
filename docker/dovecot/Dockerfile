@@ -24,7 +24,7 @@ COPY ./docker/dovecot/configs/conf.d/* /etc/dovecot/conf.d/
 
 
 # Copy Cert files
-COPY docker/certs/* /email/certs/
+COPY ./certs/* /email/certs/
 
 # Create Log dir
 RUN mkdir -p /var/log/dovecot

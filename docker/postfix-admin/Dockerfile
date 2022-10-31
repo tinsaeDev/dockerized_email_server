@@ -13,4 +13,4 @@ COPY docker/postfix-admin/config.local.php /var/www/html/
 
 
 # Copy Certificate files
-COPY   ./docker/certs/* /email/certs/
+COPY   ./certs/* /email/certs/

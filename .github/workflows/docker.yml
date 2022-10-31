@@ -1,0 +1,40 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  docker-build:
+    runs-on: self-hosted
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to rebuild  your code on the runner."
+      - run: mkdir ./docker/nginx/certs --parents
+      
+      - run: cp /opt/certs/fivestar.et/* ./certs
+      - run: cp /opt/env/email/.env .env
+
+      #  Development only
+      # - run: composer update
+      # - run: composer install
+
+
+      # Production only
+      # - run: composer require symfony/requirements-checker
+      # - run: composer install --no-dev --optimize-autoloader
+      # - run: composer dump-env prod
+      # - run: APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+
+
+      - run: docker compose build
+      - run: docker compose up -d
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+
+    # - uses: actions/checkout@v3
+    # - name: Re Build the Docker image
+# z
