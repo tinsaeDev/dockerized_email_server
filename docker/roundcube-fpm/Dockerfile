@@ -1,12 +1,8 @@
-FROM php:8.1-fpm-alpine
+# FROM php:8.1-fpm-alpine
+FROM roundcube/roundcubemail:1.6.0-fpm-alpine
 
+COPY docker/roundcube-fpm/conf.d/* /var/roundcube/config/
 
-RUN apk update \
-    && apk upgrade \
-    && apk add --update --no-cache icu-dev openldap-dev  postgresql-dev libzip-dev zlib-dev libpng libpng-dev 
-
-RUN docker-php-ext-install  sockets exif pdo_pgsql ldap zip gd intl
-
-
-
-COPY --chown=www-data:www-data docker/roundcube-fpm/app/  /var/www/html
+# Copy brand logo
+RUN mkdir -p /var/www/html/skins/5star/images/
+COPY docker/roundcube-fpm/logos/* /var/www/html/skins/5star/images/
