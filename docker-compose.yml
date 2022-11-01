@@ -149,8 +149,6 @@ services:
 volumes:
 
   # Configs
-
-
   email_pgsql:
   postfix_socket:
   postfix-admin_templates:
