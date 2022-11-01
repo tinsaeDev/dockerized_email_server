@@ -32,5 +32,5 @@ echo "#################################"
 echo "#################################"
 
 # Start Dovecot
-# /usr/sbin/dovecot -F
+/usr/sbin/dovecot -F
 
