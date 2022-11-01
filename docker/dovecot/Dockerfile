@@ -18,9 +18,10 @@ RUN  apk add  dovecot-lmtpd dovecot-pgsql less
 
 
 # Configure Dovecot
+RUN mkdir -p /etc/dovecot/conf.d/
+COPY ./docker/dovecot/configs/conf.d/* /etc/dovecot/conf.d/
 COPY ./docker/dovecot/configs/dovecot.conf  /etc/dovecot/dovecot.conf 
 COPY ./docker/dovecot/configs/dovecot-sql.conf.ext  /etc/dovecot/dovecot-sql.conf.ext 
-COPY ./docker/dovecot/configs/conf.d/* /etc/dovecot/conf.d/
 
 
 # Copy Cert files
@@ -36,4 +37,8 @@ RUN adduser --disabled-password postfix  && \
     adduser dovecot mail
 
 # Start Dovecot
-CMD /usr/sbin/dovecot -F
+# CMD /usr/sbin/dovecot -F
+
+COPY ./docker/dovecot/entrypoint.sh /docker-entrypoint/
+RUN chmod +x /docker-entrypoint/entrypoint.sh
+ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]

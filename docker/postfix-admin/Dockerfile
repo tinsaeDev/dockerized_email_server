@@ -9,7 +9,7 @@ RUN mkdir -p /var/www/html/templates_c
 RUN chowm www-data /var/www/html/templates_c &
 RUN chmod +rwx /var/www/html/templates_c &
 
-COPY docker/postfix-admin/config.local.php /var/www/html/
+# COPY docker/postfix-admin/config.local.php /var/www/html/
 
 
 # Copy Certificate files
