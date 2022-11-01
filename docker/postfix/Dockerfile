@@ -34,8 +34,8 @@ COPY ./docker/postfix-admin/postfix/configs/* /etc/postfix/
 COPY --chown=postfix:postfix ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
 
 
-# Copy open dkim private key
-COPY certs/opendkim/mail.private /etc/postfix/dkim.key
+# # Copy open dkim private key
+# COPY certs/opendkim/mail.private /etc/postfix/dkim.key
 
 
 # V mail dir permitions

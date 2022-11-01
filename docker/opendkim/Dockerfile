@@ -8,7 +8,6 @@ RUN apk update \
 # Copy configuration files
 COPY docker/opendkim/conf/opendkim.conf /etc/opendkim/opendkim.conf
 
-# Copy open dkim key file
-COPY  ./certs/opendkim/mail.private /etc/postfix/dkim.key
-
+# # Copy open dkim key file
+COPY  ./certs/opendkim/mail.private /etc/opendkim/dkim.key
 CMD ["opendkim", "-f"]
