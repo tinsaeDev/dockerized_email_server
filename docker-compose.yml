@@ -25,8 +25,6 @@ services:
       - postfix_socket:/var/spool/postfix/private/
       - vmail:/var/vmail/
 
-
-
   smtp.fivestar.et:
     depends_on:
       - db
@@ -51,7 +49,6 @@ services:
       - DB_USER=${POSTGRESS_USER}
       - DB_PASSWORD=${POSTGRESS_PASSWORD}
 
-      
   ps-admin:
     depends_on:
       - smtp.fivestar.et
@@ -87,7 +84,6 @@ services:
       - postfix-admin_templates:/var/www/html/templates_c
       - /var/www/html/
       - etc-dovecot:/etc/dovecot/:ro
-
 
   imap.fivestar.et:
     image: dovecot
