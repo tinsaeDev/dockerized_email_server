@@ -1,5 +1,4 @@
-FROM alpine:3.12
-
+FROM alpine:3.16.2 
 
 # Update alpine repo
 RUN apk update \
