@@ -73,7 +73,7 @@ services:
       POSTFIXADMIN_SMTP_PORT: 25
 
       # SETUP Password
-      POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PWD}
+      POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PASSWORD}
 
     ports:
       - ${HOST_IP}:${POSTFIXADMIN_PORT}:80
@@ -99,7 +99,11 @@ services:
       - postfix_socket:/var/spool/postfix/private/
       - etc-dovecot:/etc/dovecot/:rw
       - vmail:/var/vmail/
-
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${POSTGRESS_DB}
+      - DB_USER=${POSTGRESS_USER}
+      - DB_PASSWORD=${POSTGRESS_PASSWORD}
 
   # Roundcube
   roundcube-fpm:

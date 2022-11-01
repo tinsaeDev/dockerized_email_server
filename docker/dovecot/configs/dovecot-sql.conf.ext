@@ -1,6 +1,6 @@
 driver = pgsql
 
-connect = host=db dbname=mail1234567890 user=mail1234567890 password=mail1234567890
+connect = host=${DB_HOST} dbname=${DB_NAME} user=${DB_USER} password=${DB_PASSWORD}
 
 default_pass_scheme = ARGON2I
 
