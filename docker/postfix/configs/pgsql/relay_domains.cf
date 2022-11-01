@@ -1,5 +1,5 @@
-user = mail1234567890
-password = mail1234567890
-hosts = db
-dbname = mail1234567890
+user = ${DB_USER}
+password = ${DB_PASSWORD}
+hosts = ${DB_HOST}
+dbname = ${DB_NAME}
 query = SELECT domain FROM domain WHERE domain='%s' and backupmx = true

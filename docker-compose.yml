@@ -45,8 +45,13 @@ services:
     volumes:
       - postfix_socket:/var/spool/postfix/private/
       - vmail:/var/vmail/
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${POSTGRESS_DB}
+      - DB_USER=${POSTGRESS_USER}
+      - DB_PASSWORD=${POSTGRESS_PASSWORD}
 
-
+      
   ps-admin:
     depends_on:
       - smtp.fivestar.et
