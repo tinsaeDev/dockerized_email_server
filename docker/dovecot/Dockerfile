@@ -37,8 +37,6 @@ RUN adduser --disabled-password postfix  && \
     adduser dovecot mail
 
 # Start Dovecot
-# CMD /usr/sbin/dovecot -F
-
 COPY ./docker/dovecot/entrypoint.sh /docker-entrypoint/
 RUN chmod +x /docker-entrypoint/entrypoint.sh
 ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]
