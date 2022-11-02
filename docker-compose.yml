@@ -39,7 +39,7 @@ services:
       - ${HOST_IP}:25:25
       - ${HOST_IP}:465:465
       - ${HOST_IP}:587:587
-      - ${HOST_IP}:2525:25
+      - ${HOST_IP}:2525:587
 
     volumes:
       - postfix_socket:/var/spool/postfix/private/
