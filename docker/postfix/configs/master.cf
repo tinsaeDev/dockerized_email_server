@@ -25,8 +25,7 @@ submission inet n       -       y       -       -       smtpd
   -o smtpd_reject_unlisted_recipient=no
   -o smtpd_client_restrictions=$mua_client_restrictions
   -o smtpd_helo_restrictions=$mua_helo_restrictions
-#  -o smtpd_sender_restrictions=$mua_sender_restrictions
-  -o smtpd_sender_restrictions=reject_sender_login_mismatch
+  -o smtpd_sender_restrictions=$mua_sender_restrictions
   -o smtpd_sender_login_maps=$virtual_mailbox_maps
   -o smtpd_recipient_restrictions=
   -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
