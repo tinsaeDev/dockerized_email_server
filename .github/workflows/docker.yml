@@ -32,7 +32,7 @@ jobs:
 
 
       - run: docker compose build
-      - run: docker compose up
+      - run: docker compose up -d
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
     # - uses: actions/checkout@v3
