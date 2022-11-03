@@ -79,7 +79,7 @@ mua_sender_restrictions = permit_sasl_authenticated, reject
 mua_helo_restrictions = permit_mynetworks, reject_non_fqdn_hostname, reject_invalid_hostname, permit
 
 
-    smtpd_sender_restrictions =
+smtpd_sender_restrictions =
         reject_sender_login_mismatch,
         reject_non_fqdn_sender,
         reject_unlisted_sender,
