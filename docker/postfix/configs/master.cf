@@ -74,7 +74,6 @@ proxywrite unix -       -       n       -       1       proxymap
 smtp      unix  -       -       y       -       -       smtp
 relay     unix  -       -       y       -       -       smtp
 
-policyd-spf  unix  -       n       n       -       0       spawn
 
 
         -o syslog_name=postfix/$service_name
