@@ -52,6 +52,7 @@ smtputf8_enable = no
 
 virtual_mailbox_domains = proxy:pgsql:/etc/postfix/pgsql/virtual_domains_maps.cf
 virtual_mailbox_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_mailbox_maps.cf
+smtpd_sender_login_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_mailbox_maps.cf
 virtual_alias_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_alias_maps.cf
 relay_domains = $mydestination, proxy:pgsql:/etc/postfix/pgsql/relay_domains.cf
 
