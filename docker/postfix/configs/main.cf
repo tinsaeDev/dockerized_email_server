@@ -81,16 +81,14 @@ non_smtpd_milters = inet:opendkim:8891
 
 # Restrictions
 
-smtpd_sender_restrictions =
-   permit_mynetworks
+smtpd_sender_restrictions = permit_mynetworks
    permit_sasl_authenticated
    reject_sender_login_mismatch
    reject_unknown_sender_domain
    reject_unknown_reverse_client_hostname
    reject_unknown_client_hostname
 
-smtpd_helo_restrictions = 
-    permit_mynetworks
+smtpd_helo_restrictions = permit_mynetworks
     permit_sasl_authenticated
     reject_invalid_helo_hostname
     reject_non_fqdn_helo_hostname
