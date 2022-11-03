@@ -28,6 +28,9 @@ smtpd_tls_cert_file=/email/certs/fullchain.pem
 smtpd_tls_key_file=/email/certs/privkey.pem
 smtpd_tls_security_level=may
 
+tls_cert_file=/email/certs/fullchain.pem
+tls_key_file=/email/certs/privkey.pem
+
 smtp_tls_CApath=/etc/ssl/certs
 smtp_tls_security_level=may
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
