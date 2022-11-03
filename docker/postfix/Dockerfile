@@ -28,9 +28,9 @@ RUN chmod 644 /etc/postfix/main.cf
 
 
 # Copy Postfix Configuration Files
-COPY ./docker/postfix-admin/postfix/configs/aliases /etc/aliases
+COPY ./docker/postfix/configs/aliases /etc/aliases
 RUN postalias /etc/aliases
-COPY ./docker/postfix-admin/postfix/configs/* /etc/postfix/
+COPY ./docker/postfix/configs/* /etc/postfix/
 COPY --chown=postfix:postfix ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
 
 
