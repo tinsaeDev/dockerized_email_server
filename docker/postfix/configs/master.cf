@@ -25,27 +25,6 @@ submission inet n       -       y       -       -       smtpd
   -o smtpd_sasl_auth_enable=yes
   -o smtpd_tls_auth_only=yes
   -o smtpd_reject_unlisted_recipient=no
-  -o smtpd_client_restrictions=permit_sasl_authenticated, reject
-  
-  -o smtpd_helo_restrictions= permit_sasl_authenticated
-        reject_invalid_helo_hostname
-        reject_non_fqdn_helo_hostname
-        reject_unknown_helo_hostname
-
-  -o smtpd_sender_restrictions= reject_non_fqdn_sender
-        reject_sender_login_mismatch
-        reject_unknown_sender_domain
-        reject_unauth_pipelining
-        reject_non_fqdn_sender
-        reject_unlisted_sender
-        reject_unverified_sender
-        permit_sasl_authenticated
-        reject_unknown_reverse_client_hostname
-        reject_unknown_client_hostname
-
-  -o smtpd_helo_required = yes
-  -o smtpd_recipient_restrictions= permit_sasl_authenticated reject_unauth_destination
-  -o smtpd_relay_restrictions= permit_sasl_authenticated reject_unauth_destination
   -o milter_macro_daemon_name=ORIGINATING
 
 
@@ -59,20 +38,8 @@ smtps     inet  n       -       y       -       -       smtpd
   -o smtpd_sasl_type=dovecot
   -o smtpd_sasl_path=private/auth
 
-# Choose one: enable smtps for loopback clients only, or for any client.
-#127.0.0.1:smtps inet n  -       y       -       -       smtpd
-#smtps     inet  n       -       y       -       -       smtpd
-#  -o syslog_name=postfix/smtps
-#  -o smtpd_tls_wrappermode=yes
-#  -o smtpd_sasl_auth_enable=yes
-#  -o smtpd_reject_unlisted_recipient=no
-#  -o smtpd_client_restrictions=permit_sasl_authenticated, reject
-#  -o smtpd_helo_restrictions=permit_mynetworks, reject_non_fqdn_hostname, reject_invalid_hostname, permit
-#  -o smtpd_sender_restrictions=  permit_sasl_authenticated,  reject
-#  -o smtpd_recipient_restrictions=
-#  -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
-#  -o milter_macro_daemon_name=ORIGINATING
-#628       inet  n       -       y       -       -       qmqpd
+
+
 
 pickup    unix  n       -       y       60      1       pickup
 cleanup   unix  n       -       y       -       0       cleanup
