@@ -70,3 +70,10 @@ milter_default_action = accept
 milter_protocol = 2
 smtpd_milters = inet:opendkim:8891
 non_smtpd_milters = inet:opendkim:8891
+
+
+# Restriction implementation
+
+smtpd_client_restrictions=$mua_client_restrictions
+smtpd_helo_restrictions=$mua_helo_restrictions
+smtpd_sender_restrictions=$mua_sender_restrictions
