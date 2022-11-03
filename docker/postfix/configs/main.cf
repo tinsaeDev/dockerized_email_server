@@ -28,9 +28,6 @@ smtpd_tls_cert_file=/email/certs/fullchain.pem
 smtpd_tls_key_file=/email/certs/privkey.pem
 smtpd_tls_security_level=may
 
-tls_cert_file=/email/certs/fullchain.pem
-tls_key_file=/email/certs/privkey.pem
-
 smtp_tls_CApath=/etc/ssl/certs
 smtp_tls_security_level=may
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
@@ -55,6 +52,7 @@ smtputf8_enable = no
 
 virtual_mailbox_domains = proxy:pgsql:/etc/postfix/pgsql/virtual_domains_maps.cf
 virtual_mailbox_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_mailbox_maps.cf
+smtpd_sender_login_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_mailbox_maps.cf
 virtual_alias_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_alias_maps.cf
 relay_domains = $mydestination, proxy:pgsql:/etc/postfix/pgsql/relay_domains.cf
 
@@ -77,10 +75,6 @@ non_smtpd_milters = inet:opendkim:8891
 ## variables
 
 smtpd_restriction_classes = mua_sender_restrictions, mua_client_restrictions, mua_helo_restrictions
-mua_client_restrictions = permit_sasl_authenticated, reject
-mua_sender_restrictions =
-    reject_non_fqdn_sender       # Ensure correct mail addresses
-    reject_unknown_sender_domain # Ensure sender address is from an existing domain
-    reject_authenticated_sender_login_mismatch # Check if the user is 
-                                 # allowed to use this sender address
+mua_client_restrictions = reject_sender_login_mismatch,reject_non_fqdn_sender,reject_unlisted_sender,permit_mynetworks,permit_sasl_authenticated, reject_unauth_destination,reject_invalid_hostname,reject_unknown_sender_domain,reject_unauth_pipelining
+mua_sender_restrictions = reject_sender_login_mismatch,reject_non_fqdn_sender,reject_unlisted_sender,permit_mynetworks,permit_sasl_authenticated, reject_unauth_destination,reject_invalid_hostname,reject_unknown_sender_domain,reject_unauth_pipelining
 mua_helo_restrictions = permit_mynetworks, reject_non_fqdn_hostname, reject_invalid_hostname, permit
