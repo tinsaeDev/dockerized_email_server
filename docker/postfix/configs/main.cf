@@ -71,10 +71,3 @@ milter_default_action = accept
 milter_protocol = 2
 smtpd_milters = inet:opendkim:8891
 non_smtpd_milters = inet:opendkim:8891
-
-## variables
-
-smtpd_restriction_classes = mua_sender_restrictions, mua_client_restrictions, mua_helo_restrictions
-mua_client_restrictions = reject_sender_login_mismatch,reject_non_fqdn_sender,reject_unlisted_sender,permit_mynetworks,permit_sasl_authenticated, reject_unauth_destination,reject_invalid_hostname,reject_unknown_sender_domain,reject_unauth_pipelining
-mua_sender_restrictions = reject_sender_login_mismatch,reject_non_fqdn_sender,reject_unlisted_sender,permit_mynetworks,permit_sasl_authenticated, reject_unauth_destination,reject_invalid_hostname,reject_unknown_sender_domain,reject_unauth_pipelining
-mua_helo_restrictions = permit_mynetworks, reject_non_fqdn_hostname, reject_invalid_hostname, permit
