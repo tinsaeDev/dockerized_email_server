@@ -68,12 +68,16 @@ virtual_gid_maps = static:2000
 
 
 
+
+
 # DKIM
 milter_default_action = accept
 milter_protocol = 2
 smtpd_milters = inet:opendkim:8891
 non_smtpd_milters = inet:opendkim:8891
 
+
+maillog_file = /dev/stdout
 
 
 # Restriction Variables
