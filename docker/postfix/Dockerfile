@@ -17,7 +17,7 @@ RUN usermod -u 2004 postfix
 
 # Install Postfix
 # RUN  apt install -y  postfix 
-RUN apk add postfix postfix-pgsql
+RUN apk add postfix postfix-pgsql 
 
 
 # Permition related
@@ -31,7 +31,7 @@ RUN chmod 644 /etc/postfix/main.cf
 COPY ./docker/postfix/configs/aliases /etc/aliases
 RUN postalias /etc/aliases
 COPY ./docker/postfix/configs/* /etc/postfix/
-COPY --chown=postfix:postfix ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
+COPY ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
 
 
 # # Copy open dkim private key
