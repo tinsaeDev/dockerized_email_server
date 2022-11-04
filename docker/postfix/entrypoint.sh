@@ -6,6 +6,9 @@ cp /etc/services /var/spool/postfix/etc/services
 cp /etc/resolv.conf /var/spool/postfix/etc/resolv.conf 
 
 
+cp -R /etc/postfix/ /var/spool/postfix/etc/postfix/
+
+
 
 # Configure database per the enviroment variables
 for file in /etc/postfix/pgsql/*.cf; do
@@ -22,4 +25,6 @@ done
 
 # Fix file permisions
 postfix set-permissions
+
+
 postfix start-fg
