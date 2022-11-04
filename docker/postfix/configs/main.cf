@@ -27,7 +27,7 @@ compatibility_level = 3.6
 smtpd_tls_cert_file=/email/certs/fullchain.pem
 smtpd_tls_key_file=/email/certs/privkey.pem
 smtpd_tls_security_level=may
-smtpd_use_tls=yes
+
 
 
 smtp_tls_CApath=/etc/ssl/certs
