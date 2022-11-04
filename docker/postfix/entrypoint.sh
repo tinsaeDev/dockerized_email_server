@@ -19,4 +19,7 @@ for file in /etc/postfix/pgsql/*.cf; do
    less $file
 done
 
+
+# Fix file permisions
+postfix set-permissions
 postfix start-fg
