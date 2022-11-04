@@ -37,9 +37,7 @@ services:
     restart: always
     ports:
       - ${HOST_IP}:25:25
-      - ${HOST_IP}:587:587
-      - ${HOST_IP}:2525:2525
-
+      - ${HOST_IP}:465:465
     volumes:
       - postfix_socket:/var/spool/postfix/private/
       - vmail:/var/vmail/
