@@ -27,6 +27,8 @@ compatibility_level = 3.6
 smtpd_tls_cert_file=/email/certs/fullchain.pem
 smtpd_tls_key_file=/email/certs/privkey.pem
 smtpd_tls_security_level=may
+smtpd_use_tls=yes
+
 
 smtp_tls_CApath=/etc/ssl/certs
 smtp_tls_security_level=may
@@ -34,7 +36,7 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
 
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-myhostname = docker.fivestar.et
+myhostname = fivestar.et
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
