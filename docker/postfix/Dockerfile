@@ -24,7 +24,6 @@ RUN apk add postfix postfix-pgsql
 RUN adduser postfix mail
 RUN chown -R postfix:postfix /var/spool/postfix/private/
 
-RUN chmod 644 /etc/postfix/main.cf 
 
 
 # Copy Postfix Configuration Files
@@ -48,6 +47,8 @@ RUN chown -R vmail /var/vmail/
 COPY ./certs/* /email/certs/
 
 # RUN cp -p /etc/resolv.conf /var/spool/postfix/etc/resolv.conf 
+
+RUN chmod -R 650 /etc/postfix/
 
 COPY docker/postfix/entrypoint.sh /docker-entrypoint/
 RUN chmod +x /docker-entrypoint/entrypoint.sh
