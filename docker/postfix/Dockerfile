@@ -17,7 +17,7 @@ RUN usermod -u 2004 postfix
 
 # Install Postfix
 # RUN  apt install -y  postfix 
-RUN apk add postfix postfix-pgsql  postgresql-contrib postfix-pcre 
+RUN apk add postfix postfix-pgsql  postgresql-contrib postfix-pcre  cyrus-sasl cyrus-sasl cyrus-sasl-plain
 
 
 
