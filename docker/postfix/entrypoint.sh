@@ -22,6 +22,7 @@ done
 
 # Fix file permisions
 postfix set-permissions
+chmod -R 7777 /etc/postfix/pgsql/
 
 
 postfix start-fg
