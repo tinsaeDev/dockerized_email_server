@@ -34,7 +34,7 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
 
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-myhostname = fivestar.et
+myhostname = docker.fivestar.et
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
@@ -52,6 +52,7 @@ smtputf8_enable = no
 
 virtual_mailbox_domains = proxy:pgsql:/etc/postfix/pgsql/virtual_domains_maps.cf
 virtual_mailbox_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_mailbox_maps.cf
+smtpd_sender_login_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_mailbox_maps.cf
 virtual_alias_maps = proxy:pgsql:/etc/postfix/pgsql/virtual_alias_maps.cf
 relay_domains = $mydestination, proxy:pgsql:/etc/postfix/pgsql/relay_domains.cf
 
@@ -73,12 +74,5 @@ non_smtpd_milters = inet:opendkim:8891
 
 
 
-# mua_client_restrictions
 
-smtpd_restriction_classes = mua_sender_restrictions, mua_client_restrictions, mua_helo_restrictions
 
-mua_client_restrictions = permit_sasl_authenticated, reject
-
-mua_sender_restrictions = permit_sasl_authenticated, reject
-
-mua_helo_restrictions = permit_mynetworks, reject_non_fqdn_hostname, reject_invalid_hostname, permit

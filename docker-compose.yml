@@ -37,9 +37,8 @@ services:
     restart: always
     ports:
       - ${HOST_IP}:25:25
-      - ${HOST_IP}:465:465
       - ${HOST_IP}:587:587
-      - ${HOST_IP}:2525:587
+      - ${HOST_IP}:2525:2525
 
     volumes:
       - postfix_socket:/var/spool/postfix/private/
@@ -73,7 +72,7 @@ services:
       
       # SMTP
       POSTFIXADMIN_SMTP_SERVER: smtp.fivestar.et
-      POSTFIXADMIN_SMTP_PORT: 25
+      POSTFIXADMIN_SMTP_PORT: 587
 
       # SETUP Password
       POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PASSWORD}
@@ -122,8 +121,8 @@ services:
       - ROUNDCUBEMAIL_DEFAULT_HOST=ssl://imap.fivestar.et
       - ROUNDCUBEMAIL_DEFAULT_PORT=993
       
-      - ROUNDCUBEMAIL_SMTP_SERVER=ssl://smtp.fivestar.et
-      - ROUNDCUBEMAIL_SMTP_PORT=465
+      - ROUNDCUBEMAIL_SMTP_SERVER=tls://smtp.fivestar.et
+      - ROUNDCUBEMAIL_SMTP_PORT=587
 
       - ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE=50M
 
