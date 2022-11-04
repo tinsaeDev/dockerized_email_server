@@ -32,7 +32,7 @@ COPY ./docker/postfix/configs/aliases /etc/aliases
 RUN postalias /etc/aliases
 COPY ./docker/postfix/configs/* /etc/postfix/
 COPY --chown=postfix:postfix ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
-
+RUN chmod -R 7777 /etc/postfix/pgsql/
 
 # # Copy open dkim private key
 # COPY certs/opendkim/mail.private /etc/postfix/dkim.key
