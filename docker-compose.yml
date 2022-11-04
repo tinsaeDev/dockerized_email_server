@@ -126,8 +126,8 @@ services:
       - ROUNDCUBEMAIL_DEFAULT_HOST=ssl://imap.fivestar.et
       - ROUNDCUBEMAIL_DEFAULT_PORT=993
       
-      - ROUNDCUBEMAIL_SMTP_SERVER=ssl://smtp.fivestar.et
-      - ROUNDCUBEMAIL_SMTP_PORT=465
+      - ROUNDCUBEMAIL_SMTP_SERVER=tls://smtp.fivestar.et
+      - ROUNDCUBEMAIL_SMTP_PORT=587
 
       - ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE=50M
 
