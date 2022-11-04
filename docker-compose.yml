@@ -43,7 +43,7 @@ services:
       - vmail:/var/vmail/
     environment:
       - DB_HOST=db
-      - DB_HOST=${POSTGRESS_HOST_PORT}
+      - DB_PORT=${POSTGRESS_HOST_PORT}
       - DB_NAME=${POSTGRESS_DB}
       - DB_USER=${POSTGRESS_USER}
       - DB_PASSWORD=${POSTGRESS_PASSWORD}
