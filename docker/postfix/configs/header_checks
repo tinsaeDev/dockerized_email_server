@@ -1,1 +1,1 @@
-/From: .* <([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)>/ REPLACE From: <bu@fivestar.et>
+/From: .* <([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)>/ REPLACE From: <$1>
