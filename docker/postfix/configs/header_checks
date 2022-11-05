@@ -1,1 +1,1 @@
-/^From: (.*@fivestar.et) .*/ REPLACE From: Kiristian Tadele  <$1>
+/^From: .* ([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/ REPLACE From: <$1>
