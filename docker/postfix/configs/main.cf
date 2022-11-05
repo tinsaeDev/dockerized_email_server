@@ -93,4 +93,4 @@ mua_helo_restrictions = permit_mynetworks, reject_non_fqdn_hostname, reject_inva
 
 
 # Cannonical maps
-canonical_maps = proxy:pgsql:/etc/postfix/pgsql/canonical.cf
+#canonical_maps = proxy:pgsql:/etc/postfix/pgsql/canonical.cf
