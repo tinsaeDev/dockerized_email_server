@@ -1,7 +1,0 @@
-user = ${DB_USER}
-password = ${DB_PASSWORD}
-hosts = ${DB_HOST}:${DB_PORT}
-dbname = ${DB_NAME}
-
-
-query = SELECT name,username FROM mailbox WHERE username='%s' AND active = true
