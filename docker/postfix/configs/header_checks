@@ -1,1 +1,1 @@
-/^From: .*/ REPLACE From: Kiristian Tadele  <noreply@valid.mydomain.com>
+/^From: (.*@fivestar.et) .*/ REPLACE From: Kiristian Tadele  <$1>
