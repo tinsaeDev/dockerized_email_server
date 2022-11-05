@@ -42,7 +42,7 @@ $config['product_name'] = "FiveStar Email";
      "[print]" => "/images/logo_print.png",
    ];
 */
-$config['skin_logo'] = 'https://mail.fivestar.et/skins/5star/images/elevator.png';
+// $config['skin_logo'] = 'https://mail.fivestar.et/skins/5star/images/5star.png';
 
 
 ?>
