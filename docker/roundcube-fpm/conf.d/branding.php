@@ -7,7 +7,6 @@ $config['plugins'] = array(
   'contextmenu',
   'newmail_notifier',
   'zipdownload',
-  'swipe'
 );
 // Logo image replacement. Specifies location of the image as:
 // - URL relative to the document root of this Roundcube installation
