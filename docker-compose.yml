@@ -129,7 +129,7 @@ services:
       -  ROUNDCUBEMAIL_DB_HOST=db
       -  ROUNDCUBEMAIL_DB_USER=${POSTGRESS_USER}
       -  ROUNDCUBEMAIL_DB_PASSWORD=${POSTGRESS_PASSWORD}
-      -  ROUNDCUBEMAIL_DB_NAME=${ROUNDCUBE_DB_POSTGRESS_DB}
+      -  ROUNDCUBEMAIL_DB_NAME=${POSTGRESS_DB}
     volumes:
         - roundcube_code:/var/www/html/
         - roundcube_temp:/tmp/roundcube-temp

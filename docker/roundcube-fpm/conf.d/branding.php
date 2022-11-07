@@ -27,7 +27,7 @@ echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
 echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
 echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
 
-echo "###### " . getenv("ROUNDCUBEMAIL_DB_USER");
+echo "###### " . ;
 
 echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
 echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
@@ -44,7 +44,14 @@ echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
 echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$";
 
 
-// $config['password_db_dsn'] = "pgsql://roundcube:MlSAMhAQBN6dzSazlVjgfXo62l6OjO@127.0.0.1/vmail";
-// $config['password_query'] = "UPDATE mailbox SET password=%D,passwordlastchange=NOW() WHERE username=%u";
+$rc_db=
+$rc_pwd=
+$rc_pws=
+$rc_db=
+$rc_db=
+
+
+$config['password_db_dsn'] = "pgsql://roundcube:MlSAMhAQBN6dzSazlVjgfXo62l6OjO@127.0.0.1/vmail";
+$config['password_query'] = "UPDATE mailbox SET password=%D,passwordlastchange=NOW() WHERE username=%u";
 
 ?>
