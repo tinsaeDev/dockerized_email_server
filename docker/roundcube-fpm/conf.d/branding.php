@@ -30,7 +30,7 @@ $vmail_db_password = getenv("ROUNDCUBEMAIL_DB_PASSWORD");
 $rcmail_config['password_dovecotpw'] = '/usr/bin/doveadm pw'; // for dovecot-1.x
 $rcmail_config['password_dovecotpw_method'] = 'dovecot';
 $rcmail_config['password_algorithm_prefix'] = '{ARGON2I}';
-// $config['password_crypt_hash'] = 'dovecot';
+$config['password_crypt_hash'] = 'dovecot';
 
 $rcmail_config['password_driver'] = 'sql';
 $rcmail_config['password_confirm_current'] = true;
