@@ -8,7 +8,6 @@ RUN apk  update && \
 
 
 COPY docker/roundcube-fpm/conf.d/* /var/roundcube/config/
-COPY docker/roundcube-fpm/password.pp /var/www/html/plugins/password/password.php
 
 # Copy brand logo
 COPY docker/roundcube-fpm/logos/* /var/www/html/skins/elastic/images/
