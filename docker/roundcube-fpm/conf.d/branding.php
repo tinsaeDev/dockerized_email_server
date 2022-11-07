@@ -35,11 +35,10 @@ $rcmail_config['password_algorithm'] = 'hash-argon2i';
 $rcmail_config['password_driver'] = 'sql';
 $rcmail_config['password_confirm_current'] = true;
 
+
 $rcmail_config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$vmail_db_host/$vmail_db_name";
-
-
 $rcmail_config['password_query'] = "UPDATE mailbox SET password=%P WHERE username=%u";
-// $rcmail_config['password_crypt_hash'] = 'ARGON2I';
+
 
 
 ?>
