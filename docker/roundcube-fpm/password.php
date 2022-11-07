@@ -525,6 +525,8 @@ class password extends rcube_plugin
      */
     public static function hash_password($password, $method = '', $prefixed = true)
     {
+        // echo $method = "hash-argon2i";
+
         $method  = strtolower($method);
         $rcmail  = rcmail::get_instance();
         $prefix  = '';
@@ -785,7 +787,7 @@ class password extends rcube_plugin
         default:
             rcube::raise_error([
                     'code' => 600, 'file' => __FILE__, 'line' => __LINE__,
-                    'message' => "Password plugin: Hash method not supported."
+                    'message' => "Password plugin: Hash method not supported.:ss $method :kk" , 
                 ], true, true
             );
         }
