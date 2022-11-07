@@ -1,7 +1,18 @@
 <?php
 
 $config['product_name'] = "FiveStar Email";
-
+$config['plugins'] = array(
+  'password',
+  'managesieve',
+  'sauserprefs',
+  'markasjunk',
+  'contextmenu',
+  'newmail_notifier',
+  'zipdownload',
+  'persistent_login',
+  'enigma',
+  'swipe'
+);
 // Logo image replacement. Specifies location of the image as:
 // - URL relative to the document root of this Roundcube installation
 // - full URL with http:// or https:// prefix
