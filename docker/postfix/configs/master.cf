@@ -31,7 +31,6 @@ smtp      inet  n       -       y       -       -       smtpd
 #submission
 submission     inet  n       -       y       -       -       smtpd
   -o syslog_name=postfix/submission
-  -o smtpd_tls_wrappermode=yes
   -o smtpd_sasl_auth_enable=yes
   -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
   -o smtpd_recipient_restrictions=permit_mynetworks,permit_sasl_authenticated,reject
