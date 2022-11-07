@@ -7,7 +7,6 @@ $config['plugins'] = array(
   'contextmenu',
   'newmail_notifier',
   'zipdownload',
-  'persistent_login',
   'swipe'
 );
 // Logo image replacement. Specifies location of the image as:
