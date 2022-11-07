@@ -37,8 +37,8 @@ $rcmail_config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$
 
 $newpwd = '{ARGON2I}$argon2i$v=19$m=32768,t=4,p=1$J+LeI9bJ6RXWE77WzaiU3g$XDakfb8R1XqMKCjoADB4oliGin7p65TqSniEVkIuwfc';
 // $rcmail_config['password_query'] = "UPDATE mailbox SET password=CONCAT(_utf8'{SHA512-CRYPT}',ENCRYPT(_utf8%p,CONCAT(_utf8'$6$', SUBSTRING(SHA(RAND()), -16)))) WHERE user=%u LIMIT 1";
-$rcmail_config['password_query'] = "UPDATE mailbox SET password='$newpwd',modified=NOW() WHERE username=%u";
-$rcmail_config['password_crypt_hash'] = 'PASSWORD_ARGON2I';
+$rcmail_config['password_query'] = "UPDATE mailbox SET password=%c WHERE username=%u";
+$rcmail_config['password_crypt_hash'] = 'ARGON2I';
 // $config['password_idn_ascii'] = false;
 // $config['password_hash_algorithm'] = 'sha1';
 // $config['password_hash_base64'] = false;
