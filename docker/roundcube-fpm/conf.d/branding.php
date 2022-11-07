@@ -27,9 +27,10 @@ $vmail_db_password = getenv("ROUNDCUBEMAIL_DB_PASSWORD");
 // $config['password_hash_base64'] = false;
 
 
-$config['password_dovecotpw'] = '/usr/bin/doveadm pw'; // for dovecot-1.x
-$config['password_dovecotpw_method'] = 'dovecot';
-// $config['password_algorithm_prefix'] = '{ARGON2I}';
+$rcmail_config['password_dovecotpw'] = '/usr/bin/doveadm pw'; // for dovecot-1.x
+$rcmail_config['password_dovecotpw_method'] = 'dovecot';
+$rcmail_config['password_algorithm_prefix'] = '{ARGON2I}';
+// $config['password_crypt_hash'] = 'dovecot';
 
 $rcmail_config['password_driver'] = 'sql';
 $rcmail_config['password_confirm_current'] = true;
@@ -38,7 +39,7 @@ $rcmail_config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$
 
 
 // $rcmail_config['password_query'] = "UPDATE mailbox SET password=CONCAT(_utf8'{SHA512-CRYPT}',ENCRYPT(_utf8%p,CONCAT(_utf8'$6$', SUBSTRING(SHA(RAND()), -16)))) WHERE user=%u LIMIT 1";
-$rcmail_config['password_query'] = "UPDATE mailbox SET password=%D WHERE username=%u";
+$rcmail_config['password_query'] = "UPDATE mailbox SET password=%P WHERE username=%u";
 // $rcmail_config['password_crypt_hash'] = 'ARGON2I';
 
 
