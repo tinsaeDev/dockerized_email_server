@@ -3,14 +3,11 @@
 $config['product_name'] = "FiveStar Email";
 $config['plugins'] = array(
   'password',
-  'managesieve',
-  'sauserprefs',
   'markasjunk',
   'contextmenu',
   'newmail_notifier',
   'zipdownload',
   'persistent_login',
-  'enigma',
   'swipe'
 );
 // Logo image replacement. Specifies location of the image as:
