@@ -34,6 +34,7 @@ $rcmail_config['password_confirm_current'] = true;
 
 $rcmail_config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$vmail_db_host/$vmail_db_name";
 // $config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$vmail_db_host/$vmail_db_name";
+$config['password_algorithm'] = 'sha512-crypt';
 
 
 $rcmail_config['password_query'] = "UPDATE mailbox SET password=%D,passwordlastchange=NOW() WHERE username=%u";
