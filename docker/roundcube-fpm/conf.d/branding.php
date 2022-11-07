@@ -27,11 +27,16 @@ $vmail_db_password = getenv("ROUNDCUBEMAIL_DB_PASSWORD");
 // $config['password_hash_base64'] = false;
 
 
+
+
 $rcmail_config['password_driver'] = 'sql';
 $rcmail_config['password_confirm_current'] = true;
 
-$config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$vmail_db_host/$vmail_db_name";
-$config['password_query'] = "UPDATE mailbox SET password=%D,passwordlastchange=NOW() WHERE username=%u";
+$rcmail_config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$vmail_db_host/$vmail_db_name";
+// $config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$vmail_db_host/$vmail_db_name";
+
+
+$rcmail_config['password_query'] = "UPDATE mailbox SET password=%D,passwordlastchange=NOW() WHERE username=%u";
 // $config['password_crypt_hash'] = 'md5';
 // $config['password_idn_ascii'] = false;
 // $config['password_hash_algorithm'] = 'sha1';
