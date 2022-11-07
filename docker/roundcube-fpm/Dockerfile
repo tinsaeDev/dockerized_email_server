@@ -4,7 +4,7 @@ FROM roundcube/roundcubemail:1.6.0-fpm-alpine
 
 RUN apk  update && \
     apk upgrade && \
-    apk add dovecot-common
+    apk add dovecot
 
 
 COPY docker/roundcube-fpm/conf.d/* /var/roundcube/config/
