@@ -9,7 +9,29 @@ $config['plugins'] = array(
   'zipdownload',
 );
 
-// $config['password_db_dsn'] = "pgsql://roundcube:MlSAMhAQBN6dzSazlVjgfXo62l6OjO@127.0.0.1/vmail";
-// $config['password_query'] = "UPDATE mailbox SET password=%D,passwordlastchange=NOW() WHERE username=%u";
+
+
+// Virtial Mailbox password related
+
+$vmail_db_host = getenv("ROUNDCUBEMAIL_DB_HOST");
+// $vmail_db_port = getenv("");
+$vmail_db_name = getenv("ROUNDCUBEMAIL_DB_NAME");
+$vmail_db_user = getenv("ROUNDCUBEMAIL_DB_USER");
+$vmail_db_password = getenv("ROUNDCUBEMAIL_DB_PASSWORD");
+
+
+// $config['password_db_dsn'] = 'mysql://MY-USER:MY PASSWORD@conderus.mysql.dhosting.pl/MY-DATABASE-NAME’;
+// $config['password_crypt_hash'] = 'md5';
+// $config['password_idn_ascii'] = false;
+// $config['password_hash_algorithm'] = 'sha1';
+// $config['password_hash_base64'] = false;
+
+
+$config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$vmail_db_host/$vmail_db_name";
+$config['password_query'] = "UPDATE mailbox SET password=%D,passwordlastchange=NOW() WHERE username=%u";
+// $config['password_crypt_hash'] = 'md5';
+// $config['password_idn_ascii'] = false;
+// $config['password_hash_algorithm'] = 'sha1';
+// $config['password_hash_base64'] = false;
 
 ?>
