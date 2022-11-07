@@ -38,6 +38,10 @@ smtpd_sasl_tls_security_options=noanonymous
 smtpd_tls_auth_only=yes
 
 
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/dovecot-auth
+broken_sasl_auth_clients=yes
 
 
 smtp_tls_CApath=/etc/ssl/certs
