@@ -1,6 +1,12 @@
 # FROM php:8.1-fpm-alpine
 FROM roundcube/roundcubemail:1.6.0-fpm-alpine
 
+
+RUN apk  update && \
+    apk upgrade && \
+    apk add dovecot-common
+
+
 COPY docker/roundcube-fpm/conf.d/* /var/roundcube/config/
 
 # Copy brand logo
