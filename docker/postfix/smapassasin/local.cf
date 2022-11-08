@@ -1,6 +1,4 @@
-
 rewrite_header Subject ***** SPAM _SCORE_ *****
-
 
 report_safe             0
 
@@ -19,3 +17,7 @@ use_razor2              0
 use_dcc                 0
 
 use_pyzor               0
+
+ifplugin Mail::SpamAssassin::Plugin::Shortcircuit
+
+endif
