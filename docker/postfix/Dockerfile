@@ -61,7 +61,7 @@ RUN chmod +x /docker-entrypoint/entrypoint.sh
 # Spam Assasin
 
 COPY docker/postfix/smapassasin/spamassassin  dest/etc/default/spamassassin
-COPY source /etc/spamassassin/local.cf
+COPY docker/postfix/smapassasin/local.cf /etc/spamassassin/local.cf
 
 
 
