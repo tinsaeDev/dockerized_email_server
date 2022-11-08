@@ -1,4 +1,6 @@
+
 rewrite_header Subject ***** SPAM _SCORE_ *****
+
 
 report_safe             0
 

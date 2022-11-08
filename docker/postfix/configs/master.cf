@@ -11,10 +11,10 @@
 # ==========================================================================
 smtp      inet  n       -       -       -       -       smtpd
     -o content_filter=spamassassin
-spamassassin unix -     n       n       -       -       pipe
-    user=spamd argv=/usr/bin/spamc -f -e  
-    /usr/sbin/sendmail -oi -f ${sender} ${recipient}
-    
+
+spamassassin unix -     n   n   -   -   pipe
+  user=vmail argv=/usr/bin/spamc -f -e  /usr/libexec/dovecot/deliver -f ${sender} -d ${recipient}
+
 #smtp      inet  n       -       y       -       1       postscreen
 #smtpd     pass  -       -       y       -       -       smtpd
 #dnsblog   unix  -       -       y       -       0       dnsblog
