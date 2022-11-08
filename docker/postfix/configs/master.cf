@@ -9,7 +9,12 @@
 # service type  private unpriv  chroot  wakeup  maxproc command + args
 #               (yes)   (yes)   (no)    (never) (100)
 # ==========================================================================
-smtp      inet  n       -       y       -       -       smtpd
+smtp      inet  n       -       -       -       -       smtpd
+    -o content_filter=spamassassin
+spamassassin unix -     n       n       -       -       pipe
+    user=spamd argv=/usr/bin/spamc -f -e  
+    /usr/sbin/sendmail -oi -f ${sender} ${recipient}
+    
 #smtp      inet  n       -       y       -       1       postscreen
 #smtpd     pass  -       -       y       -       -       smtpd
 #dnsblog   unix  -       -       y       -       0       dnsblog
