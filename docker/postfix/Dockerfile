@@ -59,7 +59,7 @@ RUN chmod +x /docker-entrypoint/entrypoint.sh
 
 
 # Spam Assasin
-
+RUN adduser --disabled-password spamd
 COPY docker/postfix/smapassasin/spamassassin  dest/etc/default/spamassassin
 COPY docker/postfix/smapassasin/local.cf /etc/spamassassin/local.cf
 
