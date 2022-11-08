@@ -10,8 +10,6 @@
 #               (yes)   (yes)   (no)    (never) (100)
 # ==========================================================================
 smtp      inet  n       -       -       -       -       smtpd
-    -o content_filter=spamassassin
-
 
 #smtp      inet  n       -       y       -       1       postscreen
 #smtpd     pass  -       -       y       -       -       smtpd
@@ -100,12 +98,6 @@ lmtp      unix  -       -       y       -       -       lmtp
 anvil     unix  -       -       y       -       1       anvil
 scache    unix  -       -       y       -       1       scache
 postlog   unix-dgram n  -       n       -       1       postlogd
-
-
-
-spamassassin unix -     n   n   -   -   pipe
-  user=vmail argv=/usr/bin/spamc -f -e  /usr/libexec/dovecot/deliver -f ${sender} -d ${recipient}
-
 
 #
 # ====================================================================
