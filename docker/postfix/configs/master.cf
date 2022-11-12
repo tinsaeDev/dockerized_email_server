@@ -10,13 +10,6 @@
 #               (yes)   (yes)   (no)    (never) (100)
 # ==========================================================================
 smtp      inet  n       -       -       -       -       smtpd
-  -o content_filter=spamassassin
-
-spamassassin unix -     n       n       -       -       pipe
-    user=spamd argv=/usr/bin/spamc -f -e  
-    /usr/sbin/sendmail -oi -f ${sender} ${recipient
-
-
 
 
 
