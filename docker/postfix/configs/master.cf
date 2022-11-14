@@ -10,11 +10,7 @@
 #               (yes)   (yes)   (no)    (never) (100)
 # ==========================================================================
 smtp      inet  n       -       -       -       -       smtpd
-
-  -o smtpd_sender_restrictions=
-
-    -o                 reject_unknown_sender_domain
-    -o                 reject_unknown_reverse_client_hostname
+  -o smtpd_sender_restrictions=reject_unknown_reverse_client_hostname
 
 
 
