@@ -11,7 +11,7 @@
 # ==========================================================================
 smtp      inet  n       -       -       -       -       smtpd
 
-  -o smtpd_sender_restrictions=reject_unknown_reverse_client_hostname
+  -o smtpd_sender_restrictions=reject_unknown_reverse_client_hostname reject_invalid_helo_hostname
 
 
 #smtp      inet  n       -       y       -       1       postscreen
