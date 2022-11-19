@@ -66,6 +66,6 @@ COPY docker/postfix/smapassasin/local.cf /etc/spamassassin/local.cf
 # Add VIrus Scanner
 RUN apk add clamav clamsmtp
 
-
+RUN apk add syslog
 
 ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]
