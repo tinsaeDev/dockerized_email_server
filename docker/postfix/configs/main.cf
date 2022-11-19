@@ -128,16 +128,5 @@ smtpd_recipient_restrictions =
     reject_non_fqdn_recipient,
     reject_unknown_sender_domain,
     reject_unknown_recipient_domain,
-    permit_mynetworks,
     reject_unauth_destination,
-    #check_policy_service inet:127.0.0.1:5525,
-    #
-    # in case you want reject DNS blacklists rather than greylist them
-    # with gross, uncomment the lines below
-    #
-    #  reject_rbl_client cbl.abuseat.org,
-    #  reject_rbl_client sbl.spamhaus.org,
-    #  reject_rbl_client pbl.spamhaus.org,
-    #  reject_rbl_client bl.spamcop.net,
-    #  reject_rbl_client list.dsbl.org,
     permit 

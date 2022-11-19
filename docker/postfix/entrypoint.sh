@@ -24,5 +24,8 @@ done
 postfix set-permissions
 chmod -R 7777 /etc/postfix/pgsql/
 
+# Start deamonized version of 
+clamd start
+
 
 postfix start-fg
