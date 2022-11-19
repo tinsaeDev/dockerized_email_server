@@ -21,8 +21,9 @@ done
 
 
 # Fix file permisions
-chmod -R 7777 /etc/postfix/pgsql/
-postfix set-permissions
+chmod -R 644 /etc/postfix/
+chmod -R g+x /etc/postfix/
+chmod -R o+x /etc/postfix/
 
 
 # Start deamonized spamassasin
