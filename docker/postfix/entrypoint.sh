@@ -24,8 +24,10 @@ done
 postfix set-permissions
 chmod -R 7777 /etc/postfix/pgsql/
 
-# Start deamonized version of 
-clamd start
+# Start deamonized spamassasin
+sa-update
+spamd -d
+
 
 
 postfix start-fg
