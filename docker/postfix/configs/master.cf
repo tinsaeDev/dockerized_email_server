@@ -157,3 +157,8 @@ scalemail-backend unix -       n       n       -       2       pipe
   flags=R user=scalemail argv=/usr/lib/scalemail/bin/scalemail-store ${nexthop} ${user} ${extension}
 mailman   unix  -       n       n       -       -       pipe
   flags=FRX user=list argv=/usr/lib/mailman/bin/postfix-to-mailman.py ${nexthop} ${user}
+
+
+spamassassin unix -     n       n       -       -       pipe
+        user=spamd argv=/usr/bin/spamc -f -e  
+        /usr/sbin/sendmail -oi -f ${sender} ${recipient}
