@@ -122,6 +122,7 @@ always_bcc=archive@fivestar.et
 # Reciet Restriction
 
 smtpd_recipient_restrictions =
+    permit_sasl_authenticated,
     reject_invalid_hostname,
     reject_non_fqdn_hostname,
     reject_non_fqdn_sender,
