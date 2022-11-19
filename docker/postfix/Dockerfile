@@ -64,7 +64,7 @@ COPY docker/postfix/smapassasin/spamassassin  /etc/default/spamassassin
 COPY docker/postfix/smapassasin/local.cf /etc/spamassassin/local.cf
 
 # Add VIrus Scanner
-RUN apk add clamav
+RUN apk add clamav clamsmtp
 
 
 
