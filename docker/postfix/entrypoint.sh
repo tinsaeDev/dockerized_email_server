@@ -25,7 +25,7 @@ postfix set-permissions
 chmod -R 7777 /etc/postfix/pgsql/
 
 # Start deamonized spamassasin
-SAHOME="/var/log/spamassassin
+SAHOME="/var/log/spamassassin"
 sa-update
 spamd -d
 
