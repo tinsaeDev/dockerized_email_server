@@ -42,4 +42,10 @@ RUN adduser --disabled-password postfix  && \
 # Start Dovecot
 COPY ./docker/dovecot/entrypoint.sh /docker-entrypoint/
 RUN chmod +x /docker-entrypoint/entrypoint.sh
+
+
+
+# Add dovecot-pigeonhole / Dovecot Sieve 
+RUN apk add dovecot-pigeonhole-plugin
+
 ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]
