@@ -66,4 +66,8 @@ COPY docker/postfix/smapassasin/local.cf /etc/spamassassin/local.cf
 # Add VIrus Scanner
 RUN apk add clamav clamsmtp
 
+
+# Add dovecot-pigeonhole / Dovecot Sieve 
+RUN apk add dovecot-pigeonhole
+
 ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]
