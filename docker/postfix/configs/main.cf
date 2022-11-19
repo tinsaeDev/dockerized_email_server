@@ -51,10 +51,10 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
 myhostname = fivestar.et
+mydomain = $myhostname
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-myorigin = /etc/mailname
-mydestination = $mydomain
+myorigin = /etc/mailnamemydomain
 relayhost = 
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 10.0.0.0/8 192.168.0.0/16 172.0.0.0/16
 mailbox_size_limit = 0
