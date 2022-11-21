@@ -93,7 +93,9 @@ services:
       dockerfile: ./docker/dovecot/Dockerfile
     ports:
       - ${HOST_IP}:143:143
-      - ${HOST_IP}:993:993    
+      - ${HOST_IP}:993:993   
+      - ${HOST_IP}:4190:4190   
+      
     restart: always
     volumes:
       - postfix_socket:/var/spool/postfix/private/
