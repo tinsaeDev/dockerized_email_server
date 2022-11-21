@@ -49,7 +49,6 @@ RUN chmod +x /docker-entrypoint/entrypoint.sh
 RUN apk add dovecot-pigeonhole-plugin
 RUN mkdir -p /etc/dovecot/sieve
 COPY docker/dovecot/configs/before.sieve /etc/dovecot/sieve/before.sieve
-RUN sievec /etc/dovecot/sieve/before.sieve
-
+RUN sievec /etc/dovecot/sieve/
 
 ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]
