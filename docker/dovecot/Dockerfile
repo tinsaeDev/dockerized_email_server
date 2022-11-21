@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:latest
 
 # Upgade the repo
 # RUN apt update && apt -y full-upgrade && apt -y install apt-utils apt-transport-https gnupg2 curl
