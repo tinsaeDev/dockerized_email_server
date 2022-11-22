@@ -136,8 +136,10 @@ services:
       -  ROUNDCUBEMAIL_DB_NAME=${ROUNDCUBE_DB_POSTGRESS_DB}
       -  VMAIL_DB=${POSTGRESS_DB}
     volumes:
-        - roundcube_code:/var/www/html/
         - roundcube_temp:/tmp/roundcube-temp
+    ports:
+      - ${HOST_IP}:${ROUNDCUBE_PORT}:80
+      - ${HOST_IP}:${ROUNDCUBE_PORT_TLS}:443
 
   roundcube-nginx:
     depends_on:
@@ -147,11 +149,9 @@ services:
         dockerfile: ./docker/roundcube-nginx/Dockerfile
     image: "roundcube-nginx"
     restart: always
-    volumes:
-        - roundcube_code:/var/www/html/:ro
-    ports:
-      - ${HOST_IP}:${ROUNDCUBE_PORT}:80
-      - ${HOST_IP}:${ROUNDCUBE_PORT_TLS}:443
+    # ports:
+      # - ${HOST_IP}:${ROUNDCUBE_PORT}:80
+      # - ${HOST_IP}:${ROUNDCUBE_PORT_TLS}:443
 
 
 volumes:
@@ -164,8 +164,6 @@ volumes:
   # Share virtual mail among postfix and dovecot
   vmail:
   
-  # Shared roundcube code 
-  roundcube_code:
   roundcube_logs:
   roundcube_temp:
   roundcube_config:

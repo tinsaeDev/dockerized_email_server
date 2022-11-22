@@ -1,5 +1,6 @@
 # FROM php:8.1-fpm-alpine
-FROM roundcube/roundcubemail:1.5.x-fpm-alpine
+FROM roundcube/roundcubemail:1.6.0-apache
+
 
 
 RUN apk  update && \
