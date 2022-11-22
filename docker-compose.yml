@@ -50,6 +50,7 @@ services:
       - DB_PASSWORD=${POSTGRESS_PASSWORD}
   ps-admin:
     depends_on:
+      - imap.fivestar.et
       - smtp.fivestar.et
     build:
         context: ./
