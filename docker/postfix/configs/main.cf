@@ -130,3 +130,8 @@ smtpd_recipient_restrictions =
     reject_unknown_recipient_domain,
     reject_unauth_destination,
     permit 
+
+
+
+content_filter = scan:127.0.0.1:10026
+    
