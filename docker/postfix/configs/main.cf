@@ -133,5 +133,5 @@ smtpd_recipient_restrictions =
 
 
 
-content_filter = scan:127.0.0.1:10026
+# content_filter = scan:127.0.0.1:10026
     
