@@ -1,5 +1,5 @@
 # FROM php:8.1-fpm-alpine
-FROM roundcube/roundcubemail:1.6.0-apache
+FROM roundcube/roundcubemail:1.6-beta-fpm-alpine
 
 
 
