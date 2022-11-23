@@ -32,5 +32,9 @@ sa-update
 spamd -d
 
 
+# Start Clamv
+freshclam -d &
+clamd &
+sleep 60 && clamav-milter &
 
 postfix start-fg

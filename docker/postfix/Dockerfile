@@ -64,8 +64,22 @@ COPY docker/postfix/smapassasin/spamassassin  /etc/default/spamassassin
 COPY docker/postfix/smapassasin/local.cf /etc/spamassassin/local.cf
 
 # Add VIrus Scanner
-RUN apk add amavisd-new clamav clamav-daemon clamsmtp
 
+RUN addgroup -g 2001 clamav && adduser -u 2001 -G clamav -h /var/lib/clamav -D -s /sbin/nologin clamav
+
+RUN apk --no-cache add clamav clamav-libunrar clamav-milter \
+    && mkdir /run/clamav \
+    && chown clamav:clamav /run/clamav
+
+
+
+# EXPOSE 3310
+# EXPOSE 7357
+
+RUN freshclam --quiet
+
+
+# RUN mkdir -p /run/clamsmtp/ && chown clamsmtp .
 
 
 ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]
