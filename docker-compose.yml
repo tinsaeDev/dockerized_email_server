@@ -26,6 +26,14 @@ services:
       - vmail:/var/vmail/
       - /opt/log/opendkim:/var/log/
 
+  clamav:
+    depends_on:
+      - roundcube-fpm
+    build:
+        context: ./
+        dockerfile: ./docker/clamav/Dockerfile
+    image: "clamav"
+    restart: always
   smtp.fivestar.et:
     depends_on:
       - db
