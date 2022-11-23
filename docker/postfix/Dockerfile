@@ -71,8 +71,6 @@ RUN apk --no-cache add clamav clamav-libunrar clamav-milter \
     && mkdir /run/clamav \
     && chown clamav:clamav /run/clamav
 
-
-
 # EXPOSE 3310
 # EXPOSE 7357
 
