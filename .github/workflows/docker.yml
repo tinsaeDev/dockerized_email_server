@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main-1" ]
+    branches: [ "main" ]
 jobs:
   docker-build:
     runs-on: self-hosted
