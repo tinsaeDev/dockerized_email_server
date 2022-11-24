@@ -181,4 +181,4 @@ scan unix -      -      n      -      16      smtp
    -o smtpd_sender_restrictions=
    -o smtpd_recipient_restrictions=permit_mynetworks,reject
    -o mynetworks_style=host
-   -o smtpd_authorized_xforward        
+   -o smtpd_authorized_xforward=   
