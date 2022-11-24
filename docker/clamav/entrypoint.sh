@@ -3,7 +3,7 @@
 
 # Start Clamv
 freshclam -d &
-sleep 60 && clamav-milter &
+clamsmtpd &
 clamd  --foreground   
 
 
