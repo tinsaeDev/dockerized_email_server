@@ -17,22 +17,23 @@ RUN usermod -u 2004 postfix
 
 # Install Postfix
 # RUN  apt install -y  postfix 
-RUN apk add postfix postfix-pgsql
+RUN apk add postfix postfix-pgsql  postgresql-contrib postfix-pcre  cyrus-sasl cyrus-sasl cyrus-sasl-plain \
+      && apk add  spamassassin  spamassassin-client
+
 
 
 # Permition related
 RUN adduser postfix mail
 RUN chown -R postfix:postfix /var/spool/postfix/private/
 
-RUN chmod 644 /etc/postfix/main.cf 
 
 
 # Copy Postfix Configuration Files
 COPY ./docker/postfix/configs/aliases /etc/aliases
 RUN postalias /etc/aliases
 COPY ./docker/postfix/configs/* /etc/postfix/
-COPY --chown=postfix:postfix ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
-
+COPY ./docker/postfix/configs/pgsql/* /etc/postfix/pgsql/
+RUN chmod -R 7777 /etc/postfix/pgsql/
 
 # # Copy open dkim private key
 # COPY certs/opendkim/mail.private /etc/postfix/dkim.key
@@ -49,6 +50,34 @@ COPY ./certs/* /email/certs/
 
 # RUN cp -p /etc/resolv.conf /var/spool/postfix/etc/resolv.conf 
 
+RUN chmod -R 650 /etc/postfix/
+
 COPY docker/postfix/entrypoint.sh /docker-entrypoint/
 RUN chmod +x /docker-entrypoint/entrypoint.sh
+
+
+
+
+# Spam Assasin
+RUN adduser --disabled-password spamd
+COPY docker/postfix/smapassasin/spamassassin  /etc/default/spamassassin
+COPY docker/postfix/smapassasin/local.cf /etc/spamassassin/local.cf
+
+# Add VIrus Scanner
+
+RUN addgroup -g 2001 clamav && adduser -u 2001 -G clamav -h /var/lib/clamav -D -s /sbin/nologin clamav
+
+RUN apk --no-cache add clamav clamav-libunrar clamav-milter \
+    && mkdir /run/clamav \
+    && chown clamav:clamav /run/clamav
+
+# EXPOSE 3310
+# EXPOSE 7357
+
+RUN freshclam --quiet
+
+
+# RUN mkdir -p /run/clamsmtp/ && chown clamsmtp .
+
+
 ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]

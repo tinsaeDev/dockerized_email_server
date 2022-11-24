@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:latest
 
 # Upgade the repo
 # RUN apt update && apt -y full-upgrade && apt -y install apt-utils apt-transport-https gnupg2 curl
@@ -42,4 +42,13 @@ RUN adduser --disabled-password postfix  && \
 # Start Dovecot
 COPY ./docker/dovecot/entrypoint.sh /docker-entrypoint/
 RUN chmod +x /docker-entrypoint/entrypoint.sh
+
+
+
+# Add dovecot-pigeonhole / Dovecot Sieve 
+RUN apk add dovecot-pigeonhole-plugin
+RUN mkdir -p /etc/dovecot/sieve
+COPY docker/dovecot/configs/before.sieve /etc/dovecot/sieve/before.sieve
+RUN sievec /etc/dovecot/sieve/
+
 ENTRYPOINT [ "/docker-entrypoint/entrypoint.sh" ]

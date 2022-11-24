@@ -26,6 +26,14 @@ services:
       - vmail:/var/vmail/
       - /opt/log/opendkim:/var/log/
 
+  clamav:
+    depends_on:
+      - roundcube-fpm
+    build:
+        context: ./
+        dockerfile: ./docker/clamav/Dockerfile
+    image: "clamav"
+    restart: always
   smtp.fivestar.et:
     depends_on:
       - db
@@ -37,21 +45,20 @@ services:
     restart: always
     ports:
       - ${HOST_IP}:25:25
-      - ${HOST_IP}:465:465
+      # - ${HOST_IP}:465:465
       - ${HOST_IP}:587:587
-      - ${HOST_IP}:2525:587
-
     volumes:
       - postfix_socket:/var/spool/postfix/private/
       - vmail:/var/vmail/
     environment:
       - DB_HOST=db
+      - DB_PORT=${POSTGRESS_HOST_PORT}
       - DB_NAME=${POSTGRESS_DB}
       - DB_USER=${POSTGRESS_USER}
       - DB_PASSWORD=${POSTGRESS_PASSWORD}
-
   ps-admin:
     depends_on:
+      - imap.fivestar.et
       - smtp.fivestar.et
     build:
         context: ./
@@ -73,7 +80,7 @@ services:
       
       # SMTP
       POSTFIXADMIN_SMTP_SERVER: smtp.fivestar.et
-      POSTFIXADMIN_SMTP_PORT: 25
+      POSTFIXADMIN_SMTP_PORT: 587
 
       # SETUP Password
       POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PASSWORD}
@@ -95,7 +102,9 @@ services:
       dockerfile: ./docker/dovecot/Dockerfile
     ports:
       - ${HOST_IP}:143:143
-      - ${HOST_IP}:993:993    
+      - ${HOST_IP}:993:993   
+      - ${HOST_IP}:4190:4190   
+      
     restart: always
     volumes:
       - postfix_socket:/var/spool/postfix/private/
@@ -122,8 +131,8 @@ services:
       - ROUNDCUBEMAIL_DEFAULT_HOST=ssl://imap.fivestar.et
       - ROUNDCUBEMAIL_DEFAULT_PORT=993
       
-      - ROUNDCUBEMAIL_SMTP_SERVER=ssl://smtp.fivestar.et
-      - ROUNDCUBEMAIL_SMTP_PORT=465
+      - ROUNDCUBEMAIL_SMTP_SERVER=tls://smtp.fivestar.et
+      - ROUNDCUBEMAIL_SMTP_PORT=587
 
       - ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE=50M
 
@@ -133,6 +142,7 @@ services:
       -  ROUNDCUBEMAIL_DB_USER=${POSTGRESS_USER}
       -  ROUNDCUBEMAIL_DB_PASSWORD=${POSTGRESS_PASSWORD}
       -  ROUNDCUBEMAIL_DB_NAME=${ROUNDCUBE_DB_POSTGRESS_DB}
+      -  VMAIL_DB=${POSTGRESS_DB}
     volumes:
         - roundcube_code:/var/www/html/
         - roundcube_temp:/tmp/roundcube-temp
@@ -164,6 +174,4 @@ volumes:
   
   # Shared roundcube code 
   roundcube_code:
-  roundcube_logs:
   roundcube_temp:
-  roundcube_config:
