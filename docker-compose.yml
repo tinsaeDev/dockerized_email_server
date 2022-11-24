@@ -33,6 +33,8 @@ services:
         context: ./
         dockerfile: ./docker/clamav/Dockerfile
     image: "clamav"
+    volumes:
+      -clamav_db:/var/lib/clamav
     restart: always
   smtp.fivestar.et:
     depends_on:
@@ -175,3 +177,7 @@ volumes:
   # Shared roundcube code 
   roundcube_code:
   roundcube_temp:
+
+
+  # Clamav virus signature database
+  clamav_db:
