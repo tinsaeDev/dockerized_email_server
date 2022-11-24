@@ -34,7 +34,7 @@ services:
         dockerfile: ./docker/clamav/Dockerfile
     image: "clamav"
     volumes:
-      -clamav_db:/var/lib/clamav
+      - clamav_db:/var/lib/clamav
     restart: always
   smtp.fivestar.et:
     depends_on:
