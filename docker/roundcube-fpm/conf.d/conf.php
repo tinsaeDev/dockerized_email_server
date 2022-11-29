@@ -31,7 +31,7 @@ $rcmail_config['password_algorithm'] = 'hash-argon2i';
 
 
 
-$config['username_domain'] = 'fivestar.et';
+$rcmail_config['username_domain'] = 'fivestar.et';
 
 
 $rcmail_config['password_driver'] = 'sql';

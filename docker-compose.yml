@@ -163,6 +163,12 @@ services:
       - ${HOST_IP}:${ROUNDCUBE_PORT}:80
       - ${HOST_IP}:${ROUNDCUBE_PORT_TLS}:443
 
+  radicale:
+    build:
+        context: ./
+        dockerfile: ./docker/radicale/Dockerfile
+    image: "radicale"
+    # restart: always
 
 volumes:
 
