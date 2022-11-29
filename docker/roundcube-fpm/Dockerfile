@@ -1,4 +1,4 @@
-FROM roundcube/roundcubemail:1.5.3-fpm-alpine
+FROM roundcube/roundcubemail:1.6.0-fpm-alpine
 
 
 
