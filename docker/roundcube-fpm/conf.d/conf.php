@@ -20,8 +20,6 @@ $vmail_db_user = getenv("ROUNDCUBEMAIL_DB_USER");
 $vmail_db_password = getenv("ROUNDCUBEMAIL_DB_PASSWORD");
 
 
-
-
 $rcmail_config['password_dovecotpw'] = '/usr/bin/doveadm pw'; // for dovecot-1.x
 $rcmail_config['password_dovecotpw_method'] = 'ARGON2I';
 $rcmail_config['password_algorithm_prefix'] = '{ARGON2I}';
@@ -42,5 +40,7 @@ $rcmail_config['password_db_dsn'] = "pgsql://$vmail_db_user:$vmail_db_password@$
 $rcmail_config['password_query'] = "UPDATE mailbox SET password=%P WHERE username=%u";
 
 
+// Auto create users
+$rcmail_config['auto_create_user'] = TRUE;
 
 ?>
