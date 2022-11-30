@@ -23,5 +23,3 @@ COPY docker/roundcube-fpm/post-rc-entrypoint.sh /
 RUN chmod +x /custom-entrypoint.sh
 RUN chmod +x /post-rc-entrypoint.sh
 
-
-CMD ["/custom-entrypoint.sh"]
