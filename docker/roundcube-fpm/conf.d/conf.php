@@ -1,6 +1,6 @@
 <?php
 
-$config['product_name'] = "FiveStar Email";
+$config['product_name'] = "Five Star Company Email";
 $config['plugins'] = array(
   'password',
   'markasjunk',
