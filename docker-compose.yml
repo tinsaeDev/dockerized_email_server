@@ -152,7 +152,6 @@ services:
     volumes:
         - roundcube_code:/var/www/html/
         - roundcube_temp:/tmp/roundcube-temp
-        - /etc/letsencrypt/live/fivestar.et/:/etc/letsencrypt/live/fivestar.et/:ro
 
   roundcube-nginx:
     depends_on:
@@ -164,6 +163,8 @@ services:
     restart: always
     volumes:
         - roundcube_code:/var/www/html/:ro
+        - /etc/letsencrypt/live/fivestar.et/:/etc/letsencrypt/live/fivestar.et/:ro
+
     ports:
       - ${HOST_IP}:${ROUNDCUBE_PORT}:80
       - ${HOST_IP}:${ROUNDCUBE_PORT_TLS}:443
