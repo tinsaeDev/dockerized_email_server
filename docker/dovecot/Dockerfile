@@ -24,12 +24,6 @@ COPY ./docker/dovecot/configs/dovecot.conf  /etc/dovecot/dovecot.conf
 COPY ./docker/dovecot/configs/dovecot-sql.conf.ext  /etc/dovecot/dovecot-sql.conf.ext 
 
 
-# Update the database variables
-
-
-# Copy Cert files
-COPY ./certs/* /email/certs/
-
 # Create Log dir
 RUN mkdir -p /var/log/dovecot
 

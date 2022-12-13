@@ -52,6 +52,8 @@ services:
     volumes:
       - postfix_socket:/var/spool/postfix/private/
       - vmail:/var/vmail/
+      - /etc/letsencrypt/live/fivestar.et/:/etc/letsencrypt/live/fivestar.et/:ro
+
     environment:
       - DB_HOST=db
       - DB_PORT=${POSTGRESS_HOST_PORT}
@@ -112,6 +114,8 @@ services:
       - postfix_socket:/var/spool/postfix/private/
       - etc-dovecot:/etc/dovecot/:rw
       - vmail:/var/vmail/
+      - /etc/letsencrypt/live/fivestar.et/:/etc/letsencrypt/live/fivestar.et/:ro
+
     environment:
       - DB_HOST=db
       - DB_NAME=${POSTGRESS_DB}
@@ -148,6 +152,7 @@ services:
     volumes:
         - roundcube_code:/var/www/html/
         - roundcube_temp:/tmp/roundcube-temp
+        - /etc/letsencrypt/live/fivestar.et/:/etc/letsencrypt/live/fivestar.et/:ro
 
   roundcube-nginx:
     depends_on:

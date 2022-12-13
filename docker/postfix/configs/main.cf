@@ -24,8 +24,8 @@ compatibility_level = 3.6
 
 
 # TLS parameters
-smtpd_tls_cert_file=/email/certs/fullchain.pem
-smtpd_tls_key_file=/email/certs/privkey.pem
+smtpd_tls_cert_file=/etc/letsencrypt/live/fivestar.et/fullchain.pem
+smtpd_tls_key_file=/etc/letsencrypt/live/fivestar.et/privkey.pem
 smtpd_tls_security_level=may
 
 

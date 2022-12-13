@@ -45,9 +45,6 @@ RUN mkdir -p /var/vmail/
 RUN usermod -u 2000 vmail
 RUN chown -R vmail /var/vmail/
 
-# Copy Cert files
-COPY ./certs/* /email/certs/
-
 # RUN cp -p /etc/resolv.conf /var/spool/postfix/etc/resolv.conf 
 
 RUN chmod -R 650 /etc/postfix/

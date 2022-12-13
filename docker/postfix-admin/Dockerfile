@@ -8,6 +8,3 @@ RUN apt update && apt -y full-upgrade && apt -y install apt-utils apt-transport-
 RUN mkdir -p /var/www/html/templates_c
 RUN chowm www-data /var/www/html/templates_c &
 RUN chmod +rwx /var/www/html/templates_c &
-
-# Copy Certificate files
-COPY   ./certs/* /email/certs/
