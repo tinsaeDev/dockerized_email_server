@@ -94,7 +94,6 @@ services:
       - ${HOST_IP}:${POSTFIXADMIN_PORT_TLS}:443
     volumes:
       - postfix-admin_templates:/var/www/html/templates_c
-      - /var/www/html/
       - etc-dovecot:/etc/dovecot/:ro
 
   imap.fivestar.et:
