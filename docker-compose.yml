@@ -95,6 +95,8 @@ services:
     volumes:
       - postfix-admin_templates:/var/www/html/templates_c
       - etc-dovecot:/etc/dovecot/:ro
+      - /etc/letsencrypt/live/fivestar.et/:/etc/letsencrypt/live/fivestar.et/:ro
+
 
   imap.fivestar.et:
     image: dovecot
