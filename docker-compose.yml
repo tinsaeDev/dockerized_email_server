@@ -168,6 +168,7 @@ services:
 
     ports:
       - ${HOST_IP}:${ROUNDCUBE_PORT}:80
+      - ${HOST_IP}:82:82
       - ${HOST_IP}:${ROUNDCUBE_PORT_TLS}:443
 
   # radicale:
