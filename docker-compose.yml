@@ -52,7 +52,7 @@ services:
     volumes:
       - postfix_socket:/var/spool/postfix/private/
       - vmail:/var/vmail/
-      - /etc/letsencrypt/live/fivestar.et/:/etc/letsencrypt/live/fivestar.et/:ro
+      - /etc/letsencrypt/:/etc/letsencrypt/:ro
 
     environment:
       - DB_HOST=db
